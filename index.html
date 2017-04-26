@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		p
+		{
+		color: blue;
+		font-size: 10 px;
+		}
+		a
+		{
+			color:green;
+		}
+		
+		#coordonnees
+		{
+		  font-size:10px;
+		  position:absolute;
+      top:150px;
+		  left:700px;
+		}
+		
+		table
+		{
+		  border-collapse:collapse;
+		}
+		
+		th
+		{
+		  border: 2px solid black;
+		  text-align :center;
+		}
+		
+		td
+		{
+		  border:1px solid black;
+		  text-align :center;
+		}
+		
+		.case
+		{
+		  width:25px;
+		  height:25px;
+		  background-color: gray;
+		}
+		</style> 
+		
+		<title>  Machine de Turing  </title>
+		<script src="p5.min.js"></script>
+	
+	</head>
+		
+	<body>
+	<header><h1> Machine de Türing virtuelle </h1></header>
+		<p>  
+		On pourra consulter le site de <a href="http://www.machinedeturing.com">  Marc Raynaud</a> <br/> pour voir le prototype représenté ici virtuellement.
+
+		</p> 
+		<hr />
+		<div id='tableau_commande'>
+		  <table>
+		    <caption>Tableau de programmation</caption>
+		    <!-- entête du tableau -->
+		    <thead>
+		      <tr>
+		      <th rowspan='2'>Etat</th>
+		      <th colspan='2' rowspan='2'>Lecture</th>
+		      <th colspan='3'>Ecriture</th>
+		      <th colspan='12'>Etat d'arrivée</th>
+		    </tr>
+		    <tr>
+		      <th>b</th>
+		      <th>0</th>
+		      <th>1</th>
+		      <th>1</th>
+		      <th>2</th>
+		      <th>3</th>
+		      <th>4</th>
+		      <th>5</th>
+		      <th>6</th>
+		      <th>7</th>
+		      <th>8</th>
+		      <th>9</th>
+		      <th>10</th>
+		      <th>11</th>
+		      <th>F</th>
+		    </tr>
+		    </thead>
+		    <!-- corps du tableau -->
+		    <tbody>
+		      <tr>
+		        <td rowspan='3' id='etat1'>1</td>
+		        <td>b</td>
+		        <td class='case' id='lec1b'></td>
+		        <td class='case' id='ec1bb'></td>
+		        <td class='case' id='ec1b0'></td>
+		        <td class='case' id='ec1b1'></td>
+		        <td class='case' id='et1b1'></td>
+		        <td class='case' id='et1b2'></td>
+		        <td class='case' id='et1b3'></td>
+		        <td class='case' id='et1b4'></td>
+		        <td class='case' id='et1b5'></td>
+		        <td class='case' id='et1b6'></td>
+		        <td class='case' id='et1b7'></td>
+		        <td class='case' id='et1b8'></td>
+		        <td class='case' id='et1b9'></td>
+		        <td class='case' id='et1bA'></td>
+		        <td class='case' id='et1bB'></td>
+		        <td class='case' id='et1bF'></td>
+		      </tr>
+		      <tr>
+		        <td>0</td>
+		        <td class='case' id='lec10'></td>
+		        <td class='case' id='ec10b'></td>
+		        <td class='case' id='ec100'></td>
+		        <td class='case' id='ec101'></td>
+		        <td class='case' id='et101'></td>
+		        <td class='case' id='et102'></td>
+		        <td class='case' id='et103'></td>
+		        <td class='case' id='et104'></td>
+		        <td class='case' id='et105'></td>
+		        <td class='case' id='et106'></td>
+		        <td class='case' id='et107'></td>
+		        <td class='case' id='et108'></td>
+		        <td class='case' id='et109'></td>
+		        <td class='case' id='et10A'></td>
+		        <td class='case' id='et10B'></td>
+		        <td class='case' id='et10F'></td>
+		      </tr>
+		      <tr>
+		        <td>1</td>
+		        <td class='case' id='lec11'></td>
+		        <td class='case' id='ec11b'></td>
+		        <td class='case' id='ec110'></td>
+		        <td class='case' id='ec111'></td>
+		        <td class='case' id='et111'></td>
+		        <td class='case' id='et112'></td>
+		        <td class='case' id='et113'></td>
+		        <td class='case' id='et114'></td>
+		        <td class='case' id='et115'></td>
+		        <td class='case' id='et116'></td>
+		        <td class='case' id='et117'></td>
+		        <td class='case' id='et118'></td>
+		        <td class='case' id='et119'></td>
+		        <td class='case' id='et11A'></td>
+		        <td class='case' id='et11B'></td>
+		        <td class='case' id='et11F'></td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
+			<div id='coordonnees'>Coordonnées disques :<br/></div>
+		<!-- le dessin se trouvera dans le div défini ci-dessous -->
+		<div id='monCanvas'></div>
+		
+	
+		
+		<hr />
+		
+		<p> en cours de modification</p>
+		
+	
+
+
+		
+		<script>
+		
+		// Le disque dur
+		//////////////////
+		var rayon=300;
+		var xCentre=rayon;
+		var yCentre=rayon;
+		var xDecalage=rayon+50;
+		var yDecalage=rayon+50;
+		
+		// Les disques
+		///////////////
+		var cote=8;
+    var nbDisques=100;
+   var lesDisques=new Array(nbDisques);
+   // les couleurs des états
+   var lesCouleurs=['gray','red','green'];
+     
+		// créer un disque de couleur et position données
+		function unDisque(x,y,etat)
+		{
+		  this.x=x;
+		  this.y=y;
+		  this.etat=etat;
+		  this.couleur=lesCouleurs[etat];
+		}
+		
+		// dessiner le disque
+		unDisque.prototype.dessiner=function()
+		{
+		  //window.alert('coucou ('+this.x+';'+this.y+')');
+		  push();
+		  translate(xDecalage,yDecalage);
+		  //translate((int)(cote/2),(int)(cote/2));
+		  stroke('black');
+		  strokeWeight((int)(cote/5));
+		  //window.alert('etat ='+this.etat);
+		  fill(lesCouleurs[this.etat]);
+		  ellipse(this.x,this.y,2*cote,2*cote);
+		  pop();
+		}
+		
+		
+		
+		
+		// calculer la distance entre le disque et la souris
+		unDisque.prototype.distanceSouris=function()
+		{
+		  xCentre=this.x+cote/2;
+		  yCentre=this.y+cote/2;
+		  xSouris=mouseX-xDecalage;
+		  ySouris=mouseY-yDecalage;
+		 //window.alert('le disque : ('+xCentre+';'+yCentre+')');
+		  return (xCentre-xSouris)*(xCentre-xSouris)
+		  +(yCentre-ySouris)*(yCentre-ySouris);
+		}
+		
+		// vérifie si le disque est sélectionné
+		unDisque.prototype.estSelectionne=function()
+		{
+		  //window.alert('disque : ('+this.x+';'+this.y+')');
+		  lecartSouris=this.distanceSouris();
+			//window.alert(lecartSouris);
+		  if (lecartSouris<50)
+		  {
+		    //window.alert('redessine');
+		    this.etat=(this.etat+1)%3;
+		    this.dessiner();
+		    return true;
+		  }
+		  else
+		  {
+		    return false;
+		  }
+		}
+		
+		// affiche les coordonnées des disques
+		function afficheCoordonnees()
+		{
+		  for (i=0;i<nbDisques/2;i++)
+		  {
+		    document.getElementById('coordonnees').innerHTML+='Disque '+i+' : (';
+		    document.getElementById('coordonnees').innerHTML+=lesDisques[i].x;
+		    document.getElementById('coordonnees').innerHTML+=' ; ';
+		    document.getElementById('coordonnees').innerHTML+=lesDisques[i].y;
+		    document.getElementById('coordonnees').innerHTML+=')  ;  ';
+		    document.getElementById('coordonnees').innerHTML+='Disque '+(nbDisques-i-1)+' : (';
+		    document.getElementById('coordonnees').innerHTML+=lesDisques[nbDisques-i-1].x;
+		    document.getElementById('coordonnees').innerHTML+=' ; ';
+		    document.getElementById('coordonnees').innerHTML+=lesDisques[nbDisques-i-1].y;
+		    document.getElementById('coordonnees').innerHTML+=')<br/> ';
+		  }
+		 
+		 
+		}
+		
+
+		
+		// L'animation
+		////////////////////////////
+		
+		
+		// La fonction de démarrage
+			
+	function setup()
+{
+  var leCanvas=createCanvas(800, 800);
+  leCanvas.parent('monCanvas');
+  
+  
+  
+  // le disque dur
+  push();
+  translate(xDecalage,yDecalage);
+  //translate(xCentre,yCentre);
+  fill('#FFF168');
+  noStroke();
+  ellipse(0,0,rayon*2,rayon*2);
+  pop();
+  
+  // l'horloge
+  push();
+  translate(xDecalage,yDecalage);
+  fill('white');
+  noStroke();
+  ellipse(0,0,rayon,rayon);
+  fill('black');
+  ellipse(0,0,rayon/10,rayon/10);
+  pop();
+  
+  // l'aiguille
+   push();
+  translate(xDecalage,yDecalage);
+  strokeWeight(10);
+  fill('black');
+  line(0,0,rayon/4,rayon/4);
+  pop();
+  
+  
+  // les cylindres
+  var angle = TWO_PI / nbDisques;
+  for (var i=0;i<nbDisques;i++)
+  {
+    lesDisques[i]=new unDisque((int)((rayon-2*cote)*cos(angle*i)),(int)((rayon-2*cote)*sin(angle*i)),0);
+    
+    lesDisques[i].dessiner();
+  }
+  afficheCoordonnees();
+ }
+ 
+
+  // La fonction qui tourne en boucle
+function draw() 
+{
+  
+}
+
+ // quand la souris est enfoncée
+  function mousePressed()
+  {
+    // test de la position de la souris
+    //window.alert('souris ('+mouseX+';'+mouseY+')');
+   // window.alert('repère ('+(mouseX-xDecalage)+';'+(mouseY-yDecalage)+')');
+    
+    // test si un disque est dessous
+    for (i=0;i<nbDisques;i++)
+    {
+      lesDisques[i].estSelectionne();
+    }
+  }
+  
+ 
+
+
+
+		</script>
+	</body>
+</html>
