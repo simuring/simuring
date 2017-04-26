@@ -180,13 +180,14 @@
     var nbDisques=100;
    var lesDisques=new Array(nbDisques);
    // les couleurs des états
-   var lesCouleurs=['gray','red','green'];
+   var lesCouleurs=['white','red','green'];
      
-		// créer un disque de couleur et position données
-		function unDisque(x,y,etat)
+		// créer un disque d'état et de position angulaire donnés
+		function unDisque(angle,etat)
 		{
-		  this.x=x;
-		  this.y=y;
+		  this.angle=angle;
+		  this.x=(int)((rayon-2*cote)*cos(angle));
+		  this.y=(int)((rayon-2*cote)*sin(angle));
 		  this.etat=etat;
 		  this.couleur=lesCouleurs[etat];
 		}
@@ -240,6 +241,30 @@
 		  }
 		}
 		
+		// change la position d'un disque
+		unDisque.prototype.aGauche=function()
+		{
+		  this.angle=this.angle+TWO_PI/nbDisques;
+		  this.x=(int)((rayon-2*cote)*cos(this.angle));
+		  this.y=(int)((rayon-2*cote)*sin(this.angle));
+		  this.dessiner();
+		}
+		
+		unDisque.prototype.aDroite=function()
+		{
+		  this.angle=this.angle-TWO_PI/nbDisques;
+		  this.x=(int)((rayon-2*cote)*cos(this.angle));
+		  this.y=(int)((rayon-2*cote)*sin(this.angle));
+		  this.dessiner();
+		}
+		
+		// change l'état d'un disque
+		unDisque.prototype.changeEtat=function(letat)
+		{
+		  this.etat=letat;
+		  this.dessiner();
+		}
+		
 		// affiche les coordonnées des disques
 		function afficheCoordonnees()
 		{
@@ -260,11 +285,85 @@
 		 
 		}
 		
-
+		// Les boutons de commande
+		///////////////////////////
+		
+		
+		var btn_Droite=new unBouton(110,700,"D",'yellow');
+		var btn_Gauche=new unBouton(50,700,"G",'black');
+		var btn_Blanc=new unBouton(200,700,"B",'white');
+    var btn_Zero=new unBouton(260,700,"0",'red');
+    var btn_Un=new unBouton(320,700,"1",'green');
+    var btn_Lecture=new unBouton(410,700,"L",'blue');
+    var btn_ValeurLue=new unBouton(470,700," ",'white');
+		
+		// créer un bouton de texte modifiable et de position donnée
+		function unBouton(x,y,texte,couleur)
+		{
+		  this.x=x;
+		  this.y=y;
+		  this.texte=texte;
+		  this.couleur=couleur;
+		}
+		
+		// dessiner le bouton
+		unBouton.prototype.dessiner=function()
+		{
+		  push();
+		  stroke('black');
+		  fill(this.couleur);
+		  rect(this.x,this.y,40,40);
+		  textSize(24);
+		  textAlign(LEFT);
+		  fill('purple');
+		  text(this.texte,this.x+10,this.y+30);
+		  pop();
+		}
+		
+		// calculer la distance entre le bouton et la souris
+		unBouton.prototype.distanceSouris=function()
+		{
+		  xCentre=this.x+20;
+		  yCentre=this.y+20;
+		  xSouris=mouseX;
+		  ySouris=mouseY;
+		  //window.alert('souris = ('+xSouris+';'+ySouris+') pour centre = ('+xCentre+';'+yCentre+')');
+		  return (xCentre-xSouris)*(xCentre-xSouris)
+		  +(yCentre-ySouris)*(yCentre-ySouris);
+		}
+		
+		// vérifie si le bouton est sélectionné
+		unBouton.prototype.estSelectionne=function()
+		{
+			//window.alert("("+mouseX+";"+mouseY+") pour "+this.distanceSouris());
+		  if (this.distanceSouris()<800)
+		  {
+		    //window.alert('coucou');
+		    return true;
+		  }
+		  else
+		  {
+		    return false;
+		  }
+		}
+		
+		// change le texte du bouton
+		unBouton.prototype.changeTexte=function(letexte)
+		{
+		  this.texte=letexte;
+		  this.dessiner();
+		}
+		
+		
+		// Les modifications
+		//////////////////////
+		
+		
 		
 		// L'animation
 		////////////////////////////
 		
+		//var angle_base = TWO_PI / nbDisques;
 		
 		// La fonction de démarrage
 			
@@ -287,7 +386,7 @@
   // l'horloge
   push();
   translate(xDecalage,yDecalage);
-  fill('white');
+  fill('gray');
   noStroke();
   ellipse(0,0,rayon,rayon);
   fill('black');
@@ -302,16 +401,42 @@
   line(0,0,rayon/4,rayon/4);
   pop();
   
+  // le repère de lecture
+   push();
+	translate(xDecalage,yDecalage);
+	strokeWeight(8);
+	fill('black');
+  line(rayon+cote,0,rayon+3*cote,0);
+  pop();
+  
   
   // les cylindres
-  var angle = TWO_PI / nbDisques;
+  var angle_base = TWO_PI / nbDisques;
   for (var i=0;i<nbDisques;i++)
   {
-    lesDisques[i]=new unDisque((int)((rayon-2*cote)*cos(angle*i)),(int)((rayon-2*cote)*sin(angle*i)),0);
+    lesDisques[i]=new unDisque(angle_base*i,0);
     
     lesDisques[i].dessiner();
   }
   afficheCoordonnees();
+  
+  // les boutons
+  textSize(24);
+	textAlign(LEFT);
+	fill('purple');
+  // les boutons de déplacement
+  text("Déplacement",30,680);
+  btn_Droite.dessiner();
+  btn_Gauche.dessiner();
+  // les boutons d'écriture'
+  text("Ecriture",240,680);
+  btn_Blanc.dessiner();
+  btn_Zero.dessiner();
+  btn_Un.dessiner();
+  // le bouton de lecture
+  text("Lecture",410,680);
+  btn_Lecture.dessiner();
+  btn_ValeurLue.dessiner();
  }
  
 
@@ -324,15 +449,104 @@ function draw()
  // quand la souris est enfoncée
   function mousePressed()
   {
+    
     // test de la position de la souris
     //window.alert('souris ('+mouseX+';'+mouseY+')');
    // window.alert('repère ('+(mouseX-xDecalage)+';'+(mouseY-yDecalage)+')');
     
-    // test si un disque est dessous
+    // teste si un disque est dessous
     for (i=0;i<nbDisques;i++)
     {
       lesDisques[i].estSelectionne();
     }
+    
+    // teste si le bouton gauche est sélectionné et décale vers la gauche
+    if (btn_Gauche.estSelectionne())
+    {
+      // remet le bouton de lecture à zéro
+      btn_ValeurLue.changeTexte(" ");
+      
+      for (i=0;i<nbDisques;i++)
+      {
+        lesDisques[i].aGauche();
+      }
+      afficheCoordonnees();
+    }
+    
+    // teste si le bouton droite est sélectionné et décale vers la droite
+    if (btn_Droite.estSelectionne())
+    {
+      // remet le bouton de lecture à zéro
+      btn_ValeurLue.changeTexte(" ");
+      
+      for (i=0;i<nbDisques;i++)
+      {
+        lesDisques[i].aDroite();
+      }
+      afficheCoordonnees();
+    }
+    
+    // teste quel bouton d'écriture est sélectionné et change l'état
+    if (btn_Blanc.estSelectionne())
+    {
+      // remet le bouton de lecture à zéro
+      btn_ValeurLue.changeTexte(" ");
+      
+      // détecte le bouton sur la zone de lecture/écriture
+      for (i=0;i<nbDisques;i++)
+      {
+        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
+        if (lesDisques[i].x==284) lesDisques[i].changeEtat(0);
+      }
+    }
+    
+    if (btn_Zero.estSelectionne())
+    {
+      // remet le bouton de lecture à zéro
+      btn_ValeurLue.changeTexte(" ");
+      
+      // détecte le bouton sur la zone de lecture/écriture
+      for (i=0;i<nbDisques;i++)
+      {
+        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
+        if (lesDisques[i].x==284) lesDisques[i].changeEtat(1);
+      }
+    }
+    
+    if (btn_Un.estSelectionne())
+    {
+      // remet le bouton de lecture à zéro
+      btn_ValeurLue.changeTexte(" ");
+      
+      // détecte le bouton sur la zone de lecture/écriture
+      for (i=0;i<nbDisques;i++)
+      {
+        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
+        if (lesDisques[i].x==284) lesDisques[i].changeEtat(2);
+      }
+    }
+    
+    
+    // lecture
+    
+    if (btn_Lecture.estSelectionne())
+    {
+      // détecte le bouton sur la zone de lecture/écriture
+      for (i=0;i<nbDisques;i++)
+      {
+        var sonTexte=" ";
+        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
+        if (lesDisques[i].x==284) 
+        {
+          if (lesDisques[i].etat==0) sonTexte="B";
+          if (lesDisques[i].etat==1) sonTexte="0";
+          if (lesDisques[i].etat==2) sonTexte="1";
+          btn_ValeurLue.changeTexte(sonTexte);
+        }
+      }
+    }
+    
+    
   }
   
  
