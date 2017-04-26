@@ -13,9 +13,8 @@
 			color:green;
 		}
 		
-		#coordonnees
+		#tableau_commande
 		{
-		  font-size:10px;
 		  position:absolute;
       top:150px;
 		  left:700px;
@@ -44,6 +43,8 @@
 		  height:25px;
 		  background-color: gray;
 		}
+		
+	
 		</style> 
 		
 		<title>  Machine de Turing  </title>
@@ -89,68 +90,131 @@
 		    </thead>
 		    <!-- corps du tableau -->
 		    <tbody>
+		      <!-- état 1 -->
 		      <tr>
-		        <td rowspan='3' id='etat1'>1</td>
+		        <td rowspan='3' id='1etat'>1</td>
 		        <td>b</td>
-		        <td class='case' id='lec1b'></td>
-		        <td class='case' id='ec1bb'></td>
-		        <td class='case' id='ec1b0'></td>
-		        <td class='case' id='ec1b1'></td>
-		        <td class='case' id='et1b1'></td>
-		        <td class='case' id='et1b2'></td>
-		        <td class='case' id='et1b3'></td>
-		        <td class='case' id='et1b4'></td>
-		        <td class='case' id='et1b5'></td>
-		        <td class='case' id='et1b6'></td>
-		        <td class='case' id='et1b7'></td>
-		        <td class='case' id='et1b8'></td>
-		        <td class='case' id='et1b9'></td>
-		        <td class='case' id='et1bA'></td>
-		        <td class='case' id='et1bB'></td>
-		        <td class='case' id='et1bF'></td>
+		        <td class='case' id='case0000' onclick='changeCouleur(0,0);'></td>
+		        <td class='case' id='case0001' onclick='changeCouleur(0,1);'></td>
+		        <td class='case' id='case0002' onclick='changeCouleur(0,2);'></td>
+		        <td class='case' id='case0003' onclick='changeCouleur(0,3);'></td>
+		        <td class='case' id='case0004' onclick='changeCouleur(0,4);'></td>
+		        <td class='case' id='case0005' onclick='changeCouleur(0,5);'></td>
+		        <td class='case' id='case0006' onclick='changeCouleur(0,6);'></td>
+		        <td class='case' id='case0007' onclick='changeCouleur(0,7);'></td>
+		        <td class='case' id='case0008' onclick='changeCouleur(0,8);'></td>
+		        <td class='case' id='case0009' onclick='changeCouleur(0,9);'></td>
+		        <td class='case' id='case0010' onclick='changeCouleur(0,10);'></td>
+		        <td class='case' id='case0011' onclick='changeCouleur(0,11);'></td>
+		        <td class='case' id='case0012' onclick='changeCouleur(0,12);'></td>
+		        <td class='case' id='case0013' onclick='changeCouleur(0,13);'></td>
+		        <td class='case' id='case0014' onclick='changeCouleur(0,14);'></td>
+		        <td class='case' id='case0015' onclick='changeCouleur(0,15);'></td>
 		      </tr>
 		      <tr>
 		        <td>0</td>
-		        <td class='case' id='lec10'></td>
-		        <td class='case' id='ec10b'></td>
-		        <td class='case' id='ec100'></td>
-		        <td class='case' id='ec101'></td>
-		        <td class='case' id='et101'></td>
-		        <td class='case' id='et102'></td>
-		        <td class='case' id='et103'></td>
-		        <td class='case' id='et104'></td>
-		        <td class='case' id='et105'></td>
-		        <td class='case' id='et106'></td>
-		        <td class='case' id='et107'></td>
-		        <td class='case' id='et108'></td>
-		        <td class='case' id='et109'></td>
-		        <td class='case' id='et10A'></td>
-		        <td class='case' id='et10B'></td>
-		        <td class='case' id='et10F'></td>
+		        <td class='case' id='case0100' onclick='changeCouleur(1,0);'></td>
+		        <td class='case' id='case0101' onclick='changeCouleur(1,1);'></td>
+		        <td class='case' id='case0102' onclick='changeCouleur(1,2);'></td>
+		        <td class='case' id='case0103' onclick='changeCouleur(1,3);'></td>
+		        <td class='case' id='case0104' onclick='changeCouleur(1,4);'></td>
+		        <td class='case' id='case0105' onclick='changeCouleur(1,5);'></td>
+		        <td class='case' id='case0106' onclick='changeCouleur(1,6);'></td>
+		        <td class='case' id='case0107' onclick='changeCouleur(1,7);'></td>
+		        <td class='case' id='case0108' onclick='changeCouleur(1,8);'></td>
+		        <td class='case' id='case0109' onclick='changeCouleur(1,9);'></td>
+		        <td class='case' id='case0110' onclick='changeCouleur(1,10);'></td>
+		        <td class='case' id='case0111' onclick='changeCouleur(1,11);'></td>
+		        <td class='case' id='case0112' onclick='changeCouleur(1,12);'></td>
+		        <td class='case' id='case0113' onclick='changeCouleur(1,13);'></td>
+		        <td class='case' id='case0114' onclick='changeCouleur(1,14);'></td>
+		        <td class='case' id='case0115' onclick='changeCouleur(1,15);'></td>
 		      </tr>
 		      <tr>
 		        <td>1</td>
-		        <td class='case' id='lec11'></td>
-		        <td class='case' id='ec11b'></td>
-		        <td class='case' id='ec110'></td>
-		        <td class='case' id='ec111'></td>
-		        <td class='case' id='et111'></td>
-		        <td class='case' id='et112'></td>
-		        <td class='case' id='et113'></td>
-		        <td class='case' id='et114'></td>
-		        <td class='case' id='et115'></td>
-		        <td class='case' id='et116'></td>
-		        <td class='case' id='et117'></td>
-		        <td class='case' id='et118'></td>
-		        <td class='case' id='et119'></td>
-		        <td class='case' id='et11A'></td>
-		        <td class='case' id='et11B'></td>
-		        <td class='case' id='et11F'></td>
+		        <td class='case' id='case0200' onclick='changeCouleur(2,0);'></td>
+		        <td class='case' id='case0201' onclick='changeCouleur(2,1);'></td>
+		        <td class='case' id='case0202' onclick='changeCouleur(2,2);'></td>
+		        <td class='case' id='case0203' onclick='changeCouleur(2,3);'></td>
+		        <td class='case' id='case0204' onclick='changeCouleur(2,4);'></td>
+		        <td class='case' id='case0205' onclick='changeCouleur(2,5);'></td>
+		        <td class='case' id='case0206' onclick='changeCouleur(2,6);'></td>
+		        <td class='case' id='case0207' onclick='changeCouleur(2,7);'></td>
+		        <td class='case' id='case0208' onclick='changeCouleur(2,8);'></td>
+		        <td class='case' id='case0209' onclick='changeCouleur(2,9);'></td>
+		        <td class='case' id='case0210' onclick='changeCouleur(2,10);'></td>
+		        <td class='case' id='case0211' onclick='changeCouleur(2,11);'></td>
+		        <td class='case' id='case0212' onclick='changeCouleur(2,12);'></td>
+		        <td class='case' id='case0213' onclick='changeCouleur(2,13);'></td>
+		        <td class='case' id='case0214' onclick='changeCouleur(2,14);'></td>
+		        <td class='case' id='case0215' onclick='changeCouleur(2,15);'></td>
 		      </tr>
+		      <!-- état 2 -->
+		      <tr>
+		        <td rowspan='3' id='2etat'>2</td>
+		        <td>b</td>
+		        <td class='case' id='case0300' onclick='changeCouleur(3,0);'></td>
+		        <td class='case' id='case0301' onclick='changeCouleur(3,1);'></td>
+		        <td class='case' id='case0302' onclick='changeCouleur(3,2);'></td>
+		        <td class='case' id='case0303' onclick='changeCouleur(3,3);'></td>
+		        <td class='case' id='case0304' onclick='changeCouleur(3,4);'></td>
+		        <td class='case' id='case0305' onclick='changeCouleur(3,5);'></td>
+		        <td class='case' id='case0306' onclick='changeCouleur(3,6);'></td>
+		        <td class='case' id='case0307' onclick='changeCouleur(3,7);'></td>
+		        <td class='case' id='case0308' onclick='changeCouleur(3,8);'></td>
+		        <td class='case' id='case0309' onclick='changeCouleur(3,9);'></td>
+		        <td class='case' id='case0310' onclick='changeCouleur(3,10);'></td>
+		        <td class='case' id='case0311' onclick='changeCouleur(3,11);'></td>
+		        <td class='case' id='case0312' onclick='changeCouleur(3,12);'></td>
+		        <td class='case' id='case0313' onclick='changeCouleur(3,13);'></td>
+		        <td class='case' id='case0314' onclick='changeCouleur(3,14);'></td>
+		        <td class='case' id='case0315' onclick='changeCouleur(3,15);'></td>
+		      </tr>
+		      <tr>
+		        <td>0</td>
+		        <td class='case' id='case0400' onclick='changeCouleur(4,0);'></td>
+		        <td class='case' id='case0401' onclick='changeCouleur(4,1);'></td>
+		        <td class='case' id='case0402' onclick='changeCouleur(4,2);'></td>
+		        <td class='case' id='case0403' onclick='changeCouleur(4,3);'></td>
+		        <td class='case' id='case0404' onclick='changeCouleur(4,4);'></td>
+		        <td class='case' id='case0405' onclick='changeCouleur(4,5);'></td>
+		        <td class='case' id='case0406' onclick='changeCouleur(4,6);'></td>
+		        <td class='case' id='case0407' onclick='changeCouleur(4,7);'></td>
+		        <td class='case' id='case0408' onclick='changeCouleur(4,8);'></td>
+		        <td class='case' id='case0409' onclick='changeCouleur(4,9);'></td>
+		        <td class='case' id='case0410' onclick='changeCouleur(4,10);'></td>
+		        <td class='case' id='case0411' onclick='changeCouleur(4,11);'></td>
+		        <td class='case' id='case0412' onclick='changeCouleur(4,12);'></td>
+		        <td class='case' id='case0413' onclick='changeCouleur(4,13);'></td>
+		        <td class='case' id='case0414' onclick='changeCouleur(4,14);'></td>
+		        <td class='case' id='case0415' onclick='changeCouleur(4,15);'></td>
+		      </tr>
+		      <tr>
+		        <td>1</td>
+		        <td class='case' id='case0500' onclick='changeCouleur(5,0);'></td>
+		        <td class='case' id='case0501' onclick='changeCouleur(5,1);'></td>
+		        <td class='case' id='case0502' onclick='changeCouleur(5,2);'></td>
+		        <td class='case' id='case0503' onclick='changeCouleur(5,3);'></td>
+		        <td class='case' id='case0504' onclick='changeCouleur(5,4);'></td>
+		        <td class='case' id='case0505' onclick='changeCouleur(5,5);'></td>
+		        <td class='case' id='case0506' onclick='changeCouleur(5,6);'></td>
+		        <td class='case' id='case0507' onclick='changeCouleur(5,7);'></td>
+		        <td class='case' id='case0508' onclick='changeCouleur(5,8);'></td>
+		        <td class='case' id='case0509' onclick='changeCouleur(5,9);'></td>
+		        <td class='case' id='case0510' onclick='changeCouleur(5,10);'></td>
+		        <td class='case' id='case0511' onclick='changeCouleur(5,11);'></td>
+		        <td class='case' id='case0512' onclick='changeCouleur(5,12);'></td>
+		        <td class='case' id='case0513' onclick='changeCouleur(5,13);'></td>
+		        <td class='case' id='case0514' onclick='changeCouleur(5,14);'></td>
+		        <td class='case' id='case0515' onclick='changeCouleur(5,15);'></td>
+		      </tr>
+		      <tr>
+		        <td colspan='13' id='Fetat'>F</td>
+		        </tr>
 		    </tbody>
 		  </table>
 		</div>
-			<div id='coordonnees'>Coordonnées disques :<br/></div>
+			
 		<!-- le dessin se trouvera dans le div défini ci-dessous -->
 		<div id='monCanvas'></div>
 		
@@ -265,25 +329,7 @@
 		  this.dessiner();
 		}
 		
-		// affiche les coordonnées des disques
-		function afficheCoordonnees()
-		{
-		  for (i=0;i<nbDisques/2;i++)
-		  {
-		    document.getElementById('coordonnees').innerHTML+='Disque '+i+' : (';
-		    document.getElementById('coordonnees').innerHTML+=lesDisques[i].x;
-		    document.getElementById('coordonnees').innerHTML+=' ; ';
-		    document.getElementById('coordonnees').innerHTML+=lesDisques[i].y;
-		    document.getElementById('coordonnees').innerHTML+=')  ;  ';
-		    document.getElementById('coordonnees').innerHTML+='Disque '+(nbDisques-i-1)+' : (';
-		    document.getElementById('coordonnees').innerHTML+=lesDisques[nbDisques-i-1].x;
-		    document.getElementById('coordonnees').innerHTML+=' ; ';
-		    document.getElementById('coordonnees').innerHTML+=lesDisques[nbDisques-i-1].y;
-		    document.getElementById('coordonnees').innerHTML+=')<br/> ';
-		  }
-		 
-		 
-		}
+
 		
 		// Les boutons de commande
 		///////////////////////////
@@ -355,8 +401,35 @@
 		}
 		
 		
-		// Les modifications
-		//////////////////////
+		// Le tableau de commande
+		//////////////////////////
+		
+		// les couleurs de case
+		var couleursCases=new Array['gray','yellow'];
+		var tableauCases=new Array();
+		
+		
+		// le changement de couleur
+		function changeCouleur(a,b)
+		{
+		  numCase="case";
+		  if (a<10)
+		  {
+		    numCase=numCase+"0";
+		  }
+		  numCase=numCase+a;
+		  if (b<10)
+		  {
+		    numCase=numCase+"0";
+		  }
+		  numCase=numCase+b;
+		  laCase=document.getElementById(numCase);
+		  tableauCases[a][b]=(tableauCases[a][b]+1)%2;
+		  //window.alert('coucou '+numCase+' en '+tableauCases[a][b]);
+		  if (tableauCases[a][b]==0) laCase.style.backgroundColor='gray';
+		  else laCase.style.backgroundColor='yellow';
+		}
+		
 		
 		
 		
@@ -418,7 +491,7 @@
     
     lesDisques[i].dessiner();
   }
-  afficheCoordonnees();
+  
   
   // les boutons
   textSize(24);
@@ -437,6 +510,26 @@
   text("Lecture",410,680);
   btn_Lecture.dessiner();
   btn_ValeurLue.dessiner();
+  
+  
+  // le tableau de commande
+  	// le tableau des cases
+		// nombre d'état affichés sauf F
+		var nbEtats=2;
+	 tableauCases=new Array(nbEtats*3);
+  // mets les cases à 0
+
+  for (i=0;i<nbEtats*3;i++) 
+		{
+		  tableauCases[i]=new Array(16);
+		  for (j=0;j<16;j++) 
+		  {
+		    tableauCases[i][j]=0;
+		  }
+		
+		}
+		
+		
  }
  
 
@@ -470,7 +563,7 @@ function draw()
       {
         lesDisques[i].aGauche();
       }
-      afficheCoordonnees();
+      
     }
     
     // teste si le bouton droite est sélectionné et décale vers la droite
@@ -483,7 +576,7 @@ function draw()
       {
         lesDisques[i].aDroite();
       }
-      afficheCoordonnees();
+      
     }
     
     // teste quel bouton d'écriture est sélectionné et change l'état
