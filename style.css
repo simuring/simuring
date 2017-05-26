@@ -1,0 +1,34 @@
+p {
+  color: blue;
+  font-size: 10 px;
+}
+
+a {
+  color:green;
+}
+
+#tableau_commande {
+  position:absolute;
+  top: 150px;
+  left:700px;
+}
+
+table {
+  border-collapse:collapse;
+}
+
+th {
+  border: 2px solid black;
+  text-align :center;
+}
+
+td {
+  border:1px solid black;
+  text-align :center;
+}
+
+.case {
+  width:25px;
+  height:25px;
+  background-color: gray;
+}

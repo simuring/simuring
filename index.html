@@ -1,608 +1,180 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<style>
-		p
-		{
-		color: blue;
-		font-size: 10 px;
-		}
-		a
-		{
-			color:green;
-		}
-		
-		#tableau_commande
-		{
-		  position:absolute;
-      top:150px;
-		  left:700px;
-		}
-		
-		table
-		{
-		  border-collapse:collapse;
-		}
-		
-		th
-		{
-		  border: 2px solid black;
-		  text-align :center;
-		}
-		
-		td
-		{
-		  border:1px solid black;
-		  text-align :center;
-		}
-		
-		.case
-		{
-		  width:25px;
-		  height:25px;
-		  background-color: gray;
-		}
-		
-	
-		</style> 
-		
-		<title>  Machine de Turing  </title>
-		<script src="p5.min.js"></script>
-	
-	</head>
-		
-	<body>
-	<header><h1> Machine de Turing virtuelle </h1></header>
-		<p>  
-		On pourra consulter le site de <a href="http://www.machinedeturing.com">  Marc Raynaud</a> <br/> pour voir le prototype représenté ici virtuellement.
+    <head>
+        <meta charset="utf-8" />
+        <link href="style.css" rel="stylesheet">
+        <title>  Machine de Turing  </title>
+        <script src="p5.min.js"></script>
+    </head>
+    <body>
+        <header><h1> Machine de Turing virtuelle </h1></header>
+        <p>On pourra consulter le site de <a href="http://www.machinedeturing.com">  Marc Raynaud</a> <br/> pour voir le prototype représenté ici virtuellement.
+        </p>
+        <hr />
+        <div id='tableau_commande'>
+          <table>
+            <caption>Tableau de programmation</caption>
+            <!-- entête du tableau -->
+            <thead>
+                <tr>
+                <th rowspan='2'>Etat</th>
+                <th colspan='2' rowspan='2'>Lecture</th>
+                <th colspan='3'>Ecriture</th>
+                <th colspan='12'>Etat d'arrivée</th>
+              </tr>
+              <tr>
+                <th>b</th>
+                <th>0</th>
+                <th>1</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>F</th>
+              </tr>
+            </thead>
+            <!-- corps du tableau -->
+            <tbody>
+              <!-- état 1 -->
+              <tr>
+                <td rowspan='3' id='1etat'>1</td>
+                <td>b</td>
+                <td class='case' id='1lecb'></td>
+                <td class='case' id='1ecbb'></td>
+                <td class='case' id='1ecb0'></td>
+                <td class='case' id='1ecb1'></td>
+                <td class='case' id='1etb1'></td>
+                <td class='case' id='1etb2'></td>
+                <td class='case' id='1etb3'></td>
+                <td class='case' id='1etb4'></td>
+                <td class='case' id='1etb5'></td>
+                <td class='case' id='1etb6'></td>
+                <td class='case' id='1etb7'></td>
+                <td class='case' id='1etb8'></td>
+                <td class='case' id='1etb9'></td>
+                <td class='case' id='1etbA'></td>
+                <td class='case' id='1etbB'></td>
+                <td class='case' id='1etbF'></td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td class='case' id='1lec0'></td>
+                <td class='case' id='1ec0b'></td>
+                <td class='case' id='1ec00'></td>
+                <td class='case' id='1ec01'></td>
+                <td class='case' id='1et01'></td>
+                <td class='case' id='1et02'></td>
+                <td class='case' id='1et03'></td>
+                <td class='case' id='1et04'></td>
+                <td class='case' id='1et05'></td>
+                <td class='case' id='1et06'></td>
+                <td class='case' id='1et07'></td>
+                <td class='case' id='1et08'></td>
+                <td class='case' id='1et09'></td>
+                <td class='case' id='1et0A'></td>
+                <td class='case' id='1et0B'></td>
+                <td class='case' id='1et0F'></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td class='case' id='1lec1'></td>
+                <td class='case' id='1ec1b'></td>
+                <td class='case' id='1ec10'></td>
+                <td class='case' id='1ec11'></td>
+                <td class='case' id='1et11'></td>
+                <td class='case' id='1et12'></td>
+                <td class='case' id='1et13'></td>
+                <td class='case' id='1et14'></td>
+                <td class='case' id='1et15'></td>
+                <td class='case' id='1et16'></td>
+                <td class='case' id='1et17'></td>
+                <td class='case' id='1et18'></td>
+                <td class='case' id='1et19'></td>
+                <td class='case' id='1et1A'></td>
+                <td class='case' id='1et1B'></td>
+                <td class='case' id='1et1F'></td>
+              </tr>
+              <!-- état 2 -->
+              <tr>
+                <td rowspan='3' id='2etat'>2</td>
+                <td>b</td>
+                <td class='case' id='2lecb'></td>
+                <td class='case' id='2ecbb'></td>
+                <td class='case' id='2ecb0'></td>
+                <td class='case' id='2ecb1'></td>
+                <td class='case' id='2etb1'></td>
+                <td class='case' id='2etb2'></td>
+                <td class='case' id='2etb3'></td>
+                <td class='case' id='2etb4'></td>
+                <td class='case' id='2etb5'></td>
+                <td class='case' id='2etb6'></td>
+                <td class='case' id='2etb7'></td>
+                <td class='case' id='2etb8'></td>
+                <td class='case' id='2etb9'></td>
+                <td class='case' id='2etbA'></td>
+                <td class='case' id='2etbB'></td>
+                <td class='case' id='2etbF'></td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td class='case' id='2lec0'></td>
+                <td class='case' id='2ec0b'></td>
+                <td class='case' id='2ec00'></td>
+                <td class='case' id='2ec01'></td>
+                <td class='case' id='2et01'></td>
+                <td class='case' id='2et02'></td>
+                <td class='case' id='2et03'></td>
+                <td class='case' id='2et04'></td>
+                <td class='case' id='2et05'></td>
+                <td class='case' id='2et06'></td>
+                <td class='case' id='2et07'></td>
+                <td class='case' id='2et08'></td>
+                <td class='case' id='2et09'></td>
+                <td class='case' id='2et0A'></td>
+                <td class='case' id='2et0B'></td>
+                <td class='case' id='2et0F'></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td class='case' id='2lec1'></td>
+                <td class='case' id='2ec1b'></td>
+                <td class='case' id='2ec10'></td>
+                <td class='case' id='2ec11'></td>
+                <td class='case' id='2et11'></td>
+                <td class='case' id='2et12'></td>
+                <td class='case' id='2et13'></td>
+                <td class='case' id='2et14'></td>
+                <td class='case' id='2et15'></td>
+                <td class='case' id='2et16'></td>
+                <td class='case' id='2et17'></td>
+                <td class='case' id='2et18'></td>
+                <td class='case' id='2et19'></td>
+                <td class='case' id='2et1A'></td>
+                <td class='case' id='2et1B'></td>
+                <td class='case' id='2et1F'></td>
+              </tr>
+              <tr>
+                <td colspan='13' id='Fetat'>F</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-		</p> 
-		<hr />
-		<div id='tableau_commande'>
-		  <table>
-		    <caption>Tableau de programmation</caption>
-		    <!-- entête du tableau -->
-		    <thead>
-		      <tr>
-		      <th rowspan='2'>Etat</th>
-		      <th colspan='2' rowspan='2'>Lecture</th>
-		      <th colspan='3'>Ecriture</th>
-		      <th colspan='12'>Etat d'arrivée</th>
-		    </tr>
-		    <tr>
-		      <th>b</th>
-		      <th>0</th>
-		      <th>1</th>
-		      <th>1</th>
-		      <th>2</th>
-		      <th>3</th>
-		      <th>4</th>
-		      <th>5</th>
-		      <th>6</th>
-		      <th>7</th>
-		      <th>8</th>
-		      <th>9</th>
-		      <th>10</th>
-		      <th>11</th>
-		      <th>F</th>
-		    </tr>
-		    </thead>
-		    <!-- corps du tableau -->
-		    <tbody>
-		      <!-- état 1 -->
-		      <tr>
-		        <td rowspan='3' id='1etat'>1</td>
-		        <td>b</td>
-		        <td class='case' id='1lecb'></td>
-		        <td class='case' id='1ecbb'></td>
-		        <td class='case' id='1ecb0'></td>
-		        <td class='case' id='1ecb1'></td>
-		        <td class='case' id='1etb1'></td>
-		        <td class='case' id='1etb2'></td>
-		        <td class='case' id='1etb3'></td>
-		        <td class='case' id='1etb4'></td>
-		        <td class='case' id='1etb5'></td>
-		        <td class='case' id='1etb6'></td>
-		        <td class='case' id='1etb7'></td>
-		        <td class='case' id='1etb8'></td>
-		        <td class='case' id='1etb9'></td>
-		        <td class='case' id='1etbA'></td>
-		        <td class='case' id='1etbB'></td>
-		        <td class='case' id='1etbF'></td>
-		      </tr>
-		      <tr>
-		        <td>0</td>
-		        <td class='case' id='1lec0'></td>
-		        <td class='case' id='1ec0b'></td>
-		        <td class='case' id='1ec00'></td>
-		        <td class='case' id='1ec01'></td>
-		        <td class='case' id='1et01'></td>
-		        <td class='case' id='1et02'></td>
-		        <td class='case' id='1et03'></td>
-		        <td class='case' id='1et04'></td>
-		        <td class='case' id='1et05'></td>
-		        <td class='case' id='1et06'></td>
-		        <td class='case' id='1et07'></td>
-		        <td class='case' id='1et08'></td>
-		        <td class='case' id='1et09'></td>
-		        <td class='case' id='1et0A'></td>
-		        <td class='case' id='1et0B'></td>
-		        <td class='case' id='1et0F'></td>
-		      </tr>
-		      <tr>
-		        <td>1</td>
-		        <td class='case' id='1lec1'></td>
-		        <td class='case' id='1ec1b'></td>
-		        <td class='case' id='1ec10'></td>
-		        <td class='case' id='1ec11'></td>
-		        <td class='case' id='1et11'></td>
-		        <td class='case' id='1et12'></td>
-		        <td class='case' id='1et13'></td>
-		        <td class='case' id='1et14'></td>
-		        <td class='case' id='1et15'></td>
-		        <td class='case' id='1et16'></td>
-		        <td class='case' id='1et17'></td>
-		        <td class='case' id='1et18'></td>
-		        <td class='case' id='1et19'></td>
-		        <td class='case' id='1et1A'></td>
-		        <td class='case' id='1et1B'></td>
-		        <td class='case' id='1et1F'></td>
-		      </tr>
-		      <!-- état 2 -->
-		      <tr>
-		        <td rowspan='3' id='2etat'>2</td>
-		        <td>b</td>
-		        <td class='case' id='2lecb'></td>
-		        <td class='case' id='2ecbb'></td>
-		        <td class='case' id='2ecb0'></td>
-		        <td class='case' id='2ecb1'></td>
-		        <td class='case' id='2etb1'></td>
-		        <td class='case' id='2etb2'></td>
-		        <td class='case' id='2etb3'></td>
-		        <td class='case' id='2etb4'></td>
-		        <td class='case' id='2etb5'></td>
-		        <td class='case' id='2etb6'></td>
-		        <td class='case' id='2etb7'></td>
-		        <td class='case' id='2etb8'></td>
-		        <td class='case' id='2etb9'></td>
-		        <td class='case' id='2etbA'></td>
-		        <td class='case' id='2etbB'></td>
-		        <td class='case' id='2etbF'></td>
-		      </tr>
-		      <tr>
-		        <td>0</td>
-		        <td class='case' id='2lec0'></td>
-		        <td class='case' id='2ec0b'></td>
-		        <td class='case' id='2ec00'></td>
-		        <td class='case' id='2ec01'></td>
-		        <td class='case' id='2et01'></td>
-		        <td class='case' id='2et02'></td>
-		        <td class='case' id='2et03'></td>
-		        <td class='case' id='2et04'></td>
-		        <td class='case' id='2et05'></td>
-		        <td class='case' id='2et06'></td>
-		        <td class='case' id='2et07'></td>
-		        <td class='case' id='2et08'></td>
-		        <td class='case' id='2et09'></td>
-		        <td class='case' id='2et0A'></td>
-		        <td class='case' id='2et0B'></td>
-		        <td class='case' id='2et0F'></td>
-		      </tr>
-		      <tr>
-		        <td>1</td>
-		        <td class='case' id='2lec1'></td>
-		        <td class='case' id='2ec1b'></td>
-		        <td class='case' id='2ec10'></td>
-		        <td class='case' id='2ec11'></td>
-		        <td class='case' id='2et11'></td>
-		        <td class='case' id='2et12'></td>
-		        <td class='case' id='2et13'></td>
-		        <td class='case' id='2et14'></td>
-		        <td class='case' id='2et15'></td>
-		        <td class='case' id='2et16'></td>
-		        <td class='case' id='2et17'></td>
-		        <td class='case' id='2et18'></td>
-		        <td class='case' id='2et19'></td>
-		        <td class='case' id='2et1A'></td>
-		        <td class='case' id='2et1B'></td>
-		        <td class='case' id='2et1F'></td>
-		      </tr>
-		      <tr>
-		        <td colspan='13' id='Fetat'>F</td>
-		        </tr>
-		    </tbody>
-		  </table>
-		</div>
-			
-		<!-- le dessin se trouvera dans le div défini ci-dessous -->
-		<div id='monCanvas'></div>
-		
-	
-		
-		<hr />
-		
-		<p> en cours de modification</p>
-		
-	
-
-
-		
-		<script>
-		
-		// Le disque dur
-		//////////////////
-		var rayon=300;
-		var xCentre=rayon;
-		var yCentre=rayon;
-		var xDecalage=rayon+50;
-		var yDecalage=rayon+50;
-		
-		// Les disques
-		///////////////
-		var cote=8;
-    var nbDisques=100;
-   var lesDisques=new Array(nbDisques);
-   // les couleurs des états
-   var lesCouleurs=['white','red','green'];
-     
-		// créer un disque d'état et de position angulaire donnés
-		function unDisque(angle,etat)
-		{
-		  this.angle=angle;
-		  this.x=(int)((rayon-2*cote)*cos(angle));
-		  this.y=(int)((rayon-2*cote)*sin(angle));
-		  this.etat=etat;
-		  this.couleur=lesCouleurs[etat];
-		}
-		
-		// dessiner le disque
-		unDisque.prototype.dessiner=function()
-		{
-		  //window.alert('coucou ('+this.x+';'+this.y+')');
-		  push();
-		  translate(xDecalage,yDecalage);
-		  //translate((int)(cote/2),(int)(cote/2));
-		  stroke('black');
-		  strokeWeight((int)(cote/5));
-		  //window.alert('etat ='+this.etat);
-		  fill(lesCouleurs[this.etat]);
-		  ellipse(this.x,this.y,2*cote,2*cote);
-		  pop();
-		}
-		
-		
-		
-		
-		// calculer la distance entre le disque et la souris
-		unDisque.prototype.distanceSouris=function()
-		{
-		  xCentre=this.x+cote/2;
-		  yCentre=this.y+cote/2;
-		  xSouris=mouseX-xDecalage;
-		  ySouris=mouseY-yDecalage;
-		 //window.alert('le disque : ('+xCentre+';'+yCentre+')');
-		  return (xCentre-xSouris)*(xCentre-xSouris)
-		  +(yCentre-ySouris)*(yCentre-ySouris);
-		}
-		
-		// vérifie si le disque est sélectionné
-		unDisque.prototype.estSelectionne=function()
-		{
-		  //window.alert('disque : ('+this.x+';'+this.y+')');
-		  lecartSouris=this.distanceSouris();
-			//window.alert(lecartSouris);
-		  if (lecartSouris<50)
-		  {
-		    //window.alert('redessine');
-		    this.etat=(this.etat+1)%3;
-		    this.dessiner();
-		    return true;
-		  }
-		  else
-		  {
-		    return false;
-		  }
-		}
-		
-		// change la position d'un disque
-		unDisque.prototype.aGauche=function()
-		{
-		  this.angle=this.angle+TWO_PI/nbDisques;
-		  this.x=(int)((rayon-2*cote)*cos(this.angle));
-		  this.y=(int)((rayon-2*cote)*sin(this.angle));
-		  this.dessiner();
-		}
-		
-		unDisque.prototype.aDroite=function()
-		{
-		  this.angle=this.angle-TWO_PI/nbDisques;
-		  this.x=(int)((rayon-2*cote)*cos(this.angle));
-		  this.y=(int)((rayon-2*cote)*sin(this.angle));
-		  this.dessiner();
-		}
-		
-		// change l'état d'un disque
-		unDisque.prototype.changeEtat=function(letat)
-		{
-		  this.etat=letat;
-		  this.dessiner();
-		}
-		
-
-		
-		// Les boutons de commande
-		///////////////////////////
-		
-		
-		var btn_Droite=new unBouton(110,700,"D",'yellow');
-		var btn_Gauche=new unBouton(50,700,"G",'black');
-		var btn_Blanc=new unBouton(200,700,"B",'white');
-    var btn_Zero=new unBouton(260,700,"0",'red');
-    var btn_Un=new unBouton(320,700,"1",'green');
-    var btn_Lecture=new unBouton(410,700,"L",'blue');
-    var btn_ValeurLue=new unBouton(470,700," ",'white');
-		
-		// créer un bouton de texte modifiable et de position donnée
-		function unBouton(x,y,texte,couleur)
-		{
-		  this.x=x;
-		  this.y=y;
-		  this.texte=texte;
-		  this.couleur=couleur;
-		}
-		
-		// dessiner le bouton
-		unBouton.prototype.dessiner=function()
-		{
-		  push();
-		  stroke('black');
-		  fill(this.couleur);
-		  rect(this.x,this.y,40,40);
-		  textSize(24);
-		  textAlign(LEFT);
-		  fill('purple');
-		  text(this.texte,this.x+10,this.y+30);
-		  pop();
-		}
-		
-		// calculer la distance entre le bouton et la souris
-		unBouton.prototype.distanceSouris=function()
-		{
-		  xCentre=this.x+20;
-		  yCentre=this.y+20;
-		  xSouris=mouseX;
-		  ySouris=mouseY;
-		  //window.alert('souris = ('+xSouris+';'+ySouris+') pour centre = ('+xCentre+';'+yCentre+')');
-		  return (xCentre-xSouris)*(xCentre-xSouris)
-		  +(yCentre-ySouris)*(yCentre-ySouris);
-		}
-		
-		// vérifie si le bouton est sélectionné
-		unBouton.prototype.estSelectionne=function()
-		{
-			//window.alert("("+mouseX+";"+mouseY+") pour "+this.distanceSouris());
-		  if (this.distanceSouris()<800)
-		  {
-		    //window.alert('coucou');
-		    return true;
-		  }
-		  else
-		  {
-		    return false;
-		  }
-		}
-		
-		// change le texte du bouton
-		unBouton.prototype.changeTexte=function(letexte)
-		{
-		  this.texte=letexte;
-		  this.dessiner();
-		}
-		
-		
-		// Le tableau de commande
-		//////////////////////////
-		
-		// les couleurs de case
-		var couleursCases=new Array['gray','yellow'];
-		
-		
-		
-		
-		// L'animation
-		////////////////////////////
-		
-		//var angle_base = TWO_PI / nbDisques;
-		
-		// La fonction de démarrage
-			
-	function setup()
-{
-  var leCanvas=createCanvas(800, 800);
-  leCanvas.parent('monCanvas');
-  
-  
-  
-  // le disque dur
-  push();
-  translate(xDecalage,yDecalage);
-  //translate(xCentre,yCentre);
-  fill('#FFF168');
-  noStroke();
-  ellipse(0,0,rayon*2,rayon*2);
-  pop();
-  
-  // l'horloge
-  push();
-  translate(xDecalage,yDecalage);
-  fill('gray');
-  noStroke();
-  ellipse(0,0,rayon,rayon);
-  fill('black');
-  ellipse(0,0,rayon/10,rayon/10);
-  pop();
-  
-  // l'aiguille
-   push();
-  translate(xDecalage,yDecalage);
-  strokeWeight(10);
-  fill('black');
-  line(0,0,rayon/4,rayon/4);
-  pop();
-  
-  // le repère de lecture
-   push();
-	translate(xDecalage,yDecalage);
-	strokeWeight(8);
-	fill('black');
-  line(rayon+cote,0,rayon+3*cote,0);
-  pop();
-  
-  
-  // les cylindres
-  var angle_base = TWO_PI / nbDisques;
-  for (var i=0;i<nbDisques;i++)
-  {
-    lesDisques[i]=new unDisque(angle_base*i,0);
-    
-    lesDisques[i].dessiner();
-  }
-  
-  
-  // les boutons
-  textSize(24);
-	textAlign(LEFT);
-	fill('purple');
-  // les boutons de déplacement
-  text("Déplacement",30,680);
-  btn_Droite.dessiner();
-  btn_Gauche.dessiner();
-  // les boutons d'écriture'
-  text("Ecriture",240,680);
-  btn_Blanc.dessiner();
-  btn_Zero.dessiner();
-  btn_Un.dessiner();
-  // le bouton de lecture
-  text("Lecture",410,680);
-  btn_Lecture.dessiner();
-  btn_ValeurLue.dessiner();
- }
- 
-
-  // La fonction qui tourne en boucle
-function draw() 
-{
-  
-}
-
- // quand la souris est enfoncée
-  function mousePressed()
-  {
-    
-    // test de la position de la souris
-    //window.alert('souris ('+mouseX+';'+mouseY+')');
-   // window.alert('repère ('+(mouseX-xDecalage)+';'+(mouseY-yDecalage)+')');
-    
-    // teste si un disque est dessous
-    for (i=0;i<nbDisques;i++)
-    {
-      lesDisques[i].estSelectionne();
-    }
-    
-    // teste si le bouton gauche est sélectionné et décale vers la gauche
-    if (btn_Gauche.estSelectionne())
-    {
-      // remet le bouton de lecture à zéro
-      btn_ValeurLue.changeTexte(" ");
-      
-      for (i=0;i<nbDisques;i++)
-      {
-        lesDisques[i].aGauche();
-      }
-      
-    }
-    
-    // teste si le bouton droite est sélectionné et décale vers la droite
-    if (btn_Droite.estSelectionne())
-    {
-      // remet le bouton de lecture à zéro
-      btn_ValeurLue.changeTexte(" ");
-      
-      for (i=0;i<nbDisques;i++)
-      {
-        lesDisques[i].aDroite();
-      }
-      
-    }
-    
-    // teste quel bouton d'écriture est sélectionné et change l'état
-    if (btn_Blanc.estSelectionne())
-    {
-      // remet le bouton de lecture à zéro
-      btn_ValeurLue.changeTexte(" ");
-      
-      // détecte le bouton sur la zone de lecture/écriture
-      for (i=0;i<nbDisques;i++)
-      {
-        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
-        if (lesDisques[i].x==284) lesDisques[i].changeEtat(0);
-      }
-    }
-    
-    if (btn_Zero.estSelectionne())
-    {
-      // remet le bouton de lecture à zéro
-      btn_ValeurLue.changeTexte(" ");
-      
-      // détecte le bouton sur la zone de lecture/écriture
-      for (i=0;i<nbDisques;i++)
-      {
-        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
-        if (lesDisques[i].x==284) lesDisques[i].changeEtat(1);
-      }
-    }
-    
-    if (btn_Un.estSelectionne())
-    {
-      // remet le bouton de lecture à zéro
-      btn_ValeurLue.changeTexte(" ");
-      
-      // détecte le bouton sur la zone de lecture/écriture
-      for (i=0;i<nbDisques;i++)
-      {
-        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
-        if (lesDisques[i].x==284) lesDisques[i].changeEtat(2);
-      }
-    }
-    
-    
-    // lecture
-    
-    if (btn_Lecture.estSelectionne())
-    {
-      // détecte le bouton sur la zone de lecture/écriture
-      for (i=0;i<nbDisques;i++)
-      {
-        var sonTexte=" ";
-        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
-        if (lesDisques[i].x==284) 
-        {
-          if (lesDisques[i].etat==0) sonTexte="B";
-          if (lesDisques[i].etat==1) sonTexte="0";
-          if (lesDisques[i].etat==2) sonTexte="1";
-          btn_ValeurLue.changeTexte(sonTexte);
-        }
-      }
-    }
-    
-    
-  }
-  
- 
+        <!-- le dessin se trouvera dans le div défini ci-dessous -->
+        <div id='monCanvas'></div>
 
 
 
-		</script>
-	</body>
+        <hr />
+
+        <p> en cours de modification</p>
+        <script src="simuring.js"></script>
+    </body>
 </html>
