@@ -148,7 +148,7 @@ unBouton.prototype.changeTexte = function(letexte) {
 //////////////////////////
 
 // les couleurs de case
-var couleursCases = new Array['gray', 'yellow'];
+var couleursCases = ['gray', 'yellow'];
 
 // L'animation
 ////////////////////////////
