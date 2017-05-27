@@ -94,6 +94,9 @@ var btn_Zero = new unBouton(240, 700, "0", 'red');
 var btn_Un = new unBouton(300, 700, "1", 'green');
 var btn_Lecture = new unBouton(390, 700, "L", 'blue');
 var btn_ValeurLue = new unBouton(450, 700, " ", 'white');
+var btn_Avance = new unBouton(530, 700, ">", 'orange');
+var btn_Demarre = new unBouton(590, 700, ")>", 'orange');
+var btn_Stop = new unBouton(650, 700, "[]", 'orange');
 
 // créer un bouton de texte modifiable et de position donnée
 function unBouton(x, y,texte, couleur) {
@@ -248,6 +251,10 @@ function setup() {
     text("Lecture", 395, 680);
     btn_Lecture.dessiner();
     btn_ValeurLue.dessiner();
+    // les boutons de démarrage et autres
+    btn_Avance.dessiner();
+    btn_Demarre.dessiner();
+    btn_Stop.dessiner();
 }
 
 
@@ -328,5 +335,16 @@ function mousePressed() {
                 btn_ValeurLue.changeTexte(sonTexte);
             }
         }
+    }
+
+    // Démarrage et autres
+    if (btn_Avance.estSelectionne()) {
+        avance();
+    }
+    if (btn_Demarre.estSelectionne()) {
+        demarre();
+    }
+    if (btn_Stop.estSelectionne()) {
+        stop();
     }
 }
