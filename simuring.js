@@ -155,16 +155,25 @@ unBouton.prototype.changeTexte = function(letexte) {
 // c’est-à-dire les cases percées
 var tableTransitions = [];
 
+function idToGroup(id) {
+    var splitted = id.split(/-|:/);
+    var type = 'next state';
+    if (splitted[2][0] == 'w') type = 'write';
+    if (splitted[2][0] == 'l') type = 'move';
+    if (splitted[2][0] == 'r') type = 'move';
+    return splitted[0] + '-' + splitted[1] + ':' + type;
+}
+
 function clickTable(uneCase) {
     var idx = tableTransitions.indexOf(uneCase.id);
     // si la case n’est pas trouée
     if (idx < 0) {
+        var groupe = idToGroup(uneCase.id);
         // on décoche les éléments du même groupe
-        var prefixeGroupe = uneCase.id.substring(0,4);
         for (var i = 0; i < tableTransitions.length; i++) {
             var idCase = tableTransitions[i];
             // i != idx pour ne pas tester la case courante
-            if ((idCase.substring(0,4) == prefixeGroupe) && (i != idx)) {
+            if (i != idx && groupe == idToGroup(idCase)) {
                 tableTransitions.splice(i);
                 var eltCase = document.getElementById(idCase);
                 eltCase.style.background = "white";
