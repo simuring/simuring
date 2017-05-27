@@ -87,13 +87,13 @@ unCylindre.prototype.changeEtat = function(letat) {
 // Les boutons de commande
 ///////////////////////////
 
-var btn_Droite = new unBouton(110, 700, "D", 'yellow');
-var btn_Gauche = new unBouton(50, 700, "G", 'black');
-var btn_Blanc = new unBouton(200, 700, "B", 'white');
-var btn_Zero = new unBouton(260, 700, "0", 'red');
-var btn_Un = new unBouton(320, 700, "1", 'green');
-var btn_Lecture = new unBouton(410, 700, "L", 'blue');
-var btn_ValeurLue = new unBouton(470, 700, " ", 'white');
+var btn_Gauche = new unBouton(30, 700, "G", 'black');
+var btn_Droite = new unBouton(90, 700, "D", 'yellow');
+var btn_Blanc = new unBouton(180, 700, "B", 'white');
+var btn_Zero = new unBouton(240, 700, "0", 'red');
+var btn_Un = new unBouton(300, 700, "1", 'green');
+var btn_Lecture = new unBouton(390, 700, "L", 'blue');
+var btn_ValeurLue = new unBouton(450, 700, " ", 'white');
 
 // créer un bouton de texte modifiable et de position donnée
 function unBouton(x, y,texte, couleur) {
@@ -236,16 +236,16 @@ function setup() {
     textAlign(LEFT);
     fill('purple');
     // les boutons de déplacement
-    text("Déplacement", 30, 680);
+    text("Déplac.", 35, 680);
     btn_Droite.dessiner();
     btn_Gauche.dessiner();
     // les boutons d'écriture'
-    text("Écriture", 240, 680);
+    text("Écriture", 220, 680);
     btn_Blanc.dessiner();
     btn_Zero.dessiner();
     btn_Un.dessiner();
     // le bouton de lecture
-    text("Lecture", 410, 680);
+    text("Lecture", 395, 680);
     btn_Lecture.dessiner();
     btn_ValeurLue.dessiner();
 }
