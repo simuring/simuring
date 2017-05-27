@@ -44,8 +44,8 @@ unDisque.prototype.distanceSouris = function() {
     xSouris = mouseX - xDecalage;
     ySouris = mouseY - yDecalage;
     //window.alert('le disque : (' + xCentre + '; ' + yCentre + ')');
-    return (xCentre - xSouris)*(xCentre - xSouris)
-    +(yCentre - ySouris)*(yCentre - ySouris);
+    return (xCentre - xSouris)*(xCentre - xSouris) +
+           (yCentre - ySouris)*(yCentre - ySouris);
 }
 
 // vérifie si le disque est sélectionné
@@ -316,7 +316,6 @@ function mousePressed() {
     }
 
     // lecture
-
     if (btn_Lecture.estSelectionne()) {
         // détecte le bouton sur la zone de lecture/écriture
         for (i = 0; i < nbDisques; i++) {
