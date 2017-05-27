@@ -1,5 +1,5 @@
-// Le disque dur
-//////////////////
+// Le disque
+/////////////
 var rayon = 300;
 var xCentre = rayon;
 var yCentre = rayon;
