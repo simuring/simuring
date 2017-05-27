@@ -269,6 +269,25 @@ function setup() {
     btn_Avance.dessiner();
     btn_Demarre.dessiner();
     btn_Stop.dessiner();
+
+    // chargement des données et du programme depuis l’URL
+    var url = location.href;
+    var questionMarkPos = url.indexOf('?');
+    var queryString = url.substring(questionMarkPos + 1);
+    if (questionMarkPos >= 0 && queryString !== "") {
+        var segments = queryString.split('/');
+        var binData = parseInt(segments[0]).toString(2).split('');
+        var position = parseInt(segments[1]);
+        binData.forEach(function(bit, idx) {
+            var numCylindre = (idx - position + nbCylindres) % nbCylindres;
+            var cylindre = lesCylindres[numCylindre];
+            cylindre.etat = parseInt(bit) + 1;
+            cylindre.dessiner();
+        });
+        segments.slice(2).forEach(function(segment) {
+            percer(segment);
+        });
+    }
 }
 
 
