@@ -144,11 +144,39 @@ unBouton.prototype.changeTexte = function(letexte) {
     this.dessiner();
 }
 
-// Le tableau de commande
+// La table des transitions
 //////////////////////////
 
-// les couleurs de case
-var couleursCases = ['gray', 'yellow'];
+// la table des transtions
+// contient les identifiants des éléments HTML qui ont été cochés
+// c’est-à-dire les cases percées
+var tableTransitions = [];
+
+function clickTable(uneCase) {
+    var idx = tableTransitions.indexOf(uneCase.id);
+    // si la case n’est pas trouée
+    if (idx < 0) {
+        // on décoche les éléments du même groupe
+        var prefixeGroupe = uneCase.id.substring(0,4);
+        for (var i = 0; i < tableTransitions.length; i++) {
+            var idCase = tableTransitions[i];
+            // i != idx pour ne pas tester la case courante
+            if ((idCase.substring(0,4) == prefixeGroupe) && (i != idx)) {
+                tableTransitions.splice(i);
+                var eltCase = document.getElementById(idCase);
+                eltCase.style.background = "white";
+                eltCase.innerHTML = "&nbsp;";
+            }
+        }
+        tableTransitions.push(uneCase.id);
+        uneCase.style.background = "#ddd";
+        uneCase.innerHTML = "O";
+    } else {
+        tableTransitions.splice(idx, 1);
+        uneCase.style.background = "white";
+        uneCase.innerHTML = "&nbsp;";
+    }
+}
 
 // L'animation
 ////////////////////////////
