@@ -196,15 +196,12 @@ function setup() {
     line(rayon + cote, 0,rayon + 3*cote, 0);
     pop();
 
-
     // les cylindres
     var angle_base = TWO_PI / nbDisques;
     for (var i = 0; i < nbDisques; i++) {
-    lesDisques[i] = new unDisque(angle_base*i, 0);
-
-    lesDisques[i].dessiner();
+        lesDisques[i] = new unDisque(angle_base*i, 0);
+        lesDisques[i].dessiner();
     }
-
 
     // les boutons
     textSize(24);
