@@ -240,7 +240,7 @@ function setup() {
     btn_Droite.dessiner();
     btn_Gauche.dessiner();
     // les boutons d'écriture'
-    text("Ecriture", 240, 680);
+    text("Écriture", 240, 680);
     btn_Blanc.dessiner();
     btn_Zero.dessiner();
     btn_Un.dessiner();
