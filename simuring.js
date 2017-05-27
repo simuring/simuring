@@ -239,7 +239,7 @@ function setup() {
     // les cylindres
     var angle_base = TWO_PI / nbCylindres;
     for (var i = 0; i < nbCylindres; i++) {
-        lesCylindres[i] = new unCylindre(angle_base*i, 0);
+        lesCylindres[i] = new unCylindre(-angle_base*i, 0);
         lesCylindres[i].dessiner();
     }
 
