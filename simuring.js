@@ -164,6 +164,13 @@ function idToGroup(id) {
     return splitted[0] + '-' + splitted[1] + ':' + type;
 }
 
+function percer(id) {
+    tableTransitions.push(id);
+    var laCase = document.getElementById(id);
+    laCase.style.background = "#ddd";
+    laCase.innerHTML = "O";
+}
+
 function clickTable(uneCase) {
     var idx = tableTransitions.indexOf(uneCase.id);
     // si la case n’est pas trouée
@@ -180,9 +187,7 @@ function clickTable(uneCase) {
                 eltCase.innerHTML = "&nbsp;";
             }
         }
-        tableTransitions.push(uneCase.id);
-        uneCase.style.background = "#ddd";
-        uneCase.innerHTML = "O";
+        percer(uneCase.id);
     } else {
         tableTransitions.splice(idx, 1);
         uneCase.style.background = "white";
