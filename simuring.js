@@ -1,3 +1,7 @@
+// La machine
+//////////////
+var etat = '1';
+
 // Le disque
 /////////////
 var rayon = 300;
@@ -399,4 +403,57 @@ function lecture() {
         i++;
     }
     return symbole;
+}
+
+function avance() {
+    if (etat == '12') {
+        window.alert("État final");
+        return;
+    }
+    // lecture
+    var sym = lecture();
+    // éléments de la table de transition qui nous intéressent
+    var todo = [];
+    for (var i = 0; i < tableTransitions.length; i++) {
+        var idCase = tableTransitions[i];
+        var splitted = idCase.split(/-|:/);
+        if (splitted[0] == etat && splitted[1] == sym) {
+            todo.push(splitted[2]);
+        }
+    }
+    // écriture
+    for (var i = 0; i < todo.length; i++) {
+        if (todo[i][0] == 'w') {
+            todo.splice(i);
+            break;
+        }
+    }
+    // déplacement
+    for (var i = 0; i < todo.length; i++) {
+        if (todo[i][0] == 'r') {
+            aGauche();
+            todo.splice(i);
+            break;
+        } else if (todo[i][0] == 'l') {
+            aDroite();
+            todo.splice(i);
+            break;
+        }
+    }
+    // changement d’état
+    for (var i = 0; i < todo.length; i++) {
+        etat = todo[i];
+        todo.splice(i);
+    }
+    if (etat == '12') {
+        window.alert("État final");
+    }
+}
+
+function demarre() {
+    window.alert("Ne fonctionne pas encore");
+}
+
+function stop() {
+    window.alert("Ne fonctionne pas encore");
 }
