@@ -360,17 +360,7 @@ function mousePressed() {
 
     // lecture
     if (btn_Lecture.estSelectionne()) {
-        // détecte le bouton sur la zone de lecture/écriture
-        for (i = 0; i < nbCylindres; i++) {
-            var sonTexte = " ";
-            // je teste l'abscisse et non l'angle pour éviter le modulo 2π
-            if (lesCylindres[i].x == 284) {
-                if (lesCylindres[i].etat == 0) sonTexte = "B";
-                if (lesCylindres[i].etat == 1) sonTexte = "0";
-                if (lesCylindres[i].etat == 2) sonTexte = "1";
-                btn_ValeurLue.changeTexte(sonTexte);
-            }
-        }
+        lecture();
     }
 
     // Démarrage et autres
@@ -383,4 +373,22 @@ function mousePressed() {
     if (btn_Stop.estSelectionne()) {
         stop();
     }
+}
+
+function lecture() {
+    var lu = false;
+    var i = 0;
+    while (!lu && i < nbCylindres) {
+        var symbole = " ";
+        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
+        if (lesCylindres[i].x == 284) {
+            if (lesCylindres[i].etat == 0) symbole = "B";
+            if (lesCylindres[i].etat == 1) symbole = "0";
+            if (lesCylindres[i].etat == 2) symbole = "1";
+            btn_ValeurLue.changeTexte(symbole);
+            lu = true;
+        }
+        i++;
+    }
+    return symbole;
 }
