@@ -167,6 +167,9 @@ function idToGroup(id) {
 function percer(id) {
     tableTransitions.push(id);
     var laCase = document.getElementById(id);
+    if (!laCase) {
+        window.alert("Erreur de programmation: " + id);
+    }
     laCase.style.background = "#ddd";
     laCase.innerHTML = "O";
 }
