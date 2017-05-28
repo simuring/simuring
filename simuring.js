@@ -312,18 +312,14 @@ function mousePressed() {
     if (btn_Gauche.estSelectionne()) {
         // remet le bouton de lecture à zéro
         btn_ValeurLue.changeTexte(" ");
-        for (i = 0; i < nbCylindres; i++) {
-            lesCylindres[i].aGauche();
-        }
+        aGauche();
     }
 
     // teste si le bouton droite est sélectionné et décale vers la droite
     if (btn_Droite.estSelectionne()) {
         // remet le bouton de lecture à zéro
         btn_ValeurLue.changeTexte(" ");
-        for (i = 0; i < nbCylindres; i++) {
-            lesCylindres[i].aDroite();
-        }
+        aDroite();
     }
 
     // teste quel bouton d'écriture est sélectionné et change l'état
@@ -372,6 +368,18 @@ function mousePressed() {
     }
     if (btn_Stop.estSelectionne()) {
         stop();
+    }
+}
+
+function aGauche() {
+    for (i = 0; i < nbCylindres; i++) {
+        lesCylindres[i].aGauche();
+    }
+}
+
+function aDroite() {
+    for (i = 0; i < nbCylindres; i++) {
+        lesCylindres[i].aDroite();
     }
 }
 
