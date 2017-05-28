@@ -285,7 +285,7 @@ function setup() {
             cylindre.dessiner();
         });
         segments.slice(2).forEach(function(segment) {
-            percer(segment);
+            if (segment != "") percer(segment);
         });
     }
 }
