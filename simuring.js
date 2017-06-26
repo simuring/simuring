@@ -188,7 +188,7 @@ function clickTable(uneCase) {
             var idCase = tableTransitions[i];
             // i != idx pour ne pas tester la case courante
             if (i != idx && groupe == idToGroup(idCase)) {
-                tableTransitions.splice(i);
+                tableTransitions.splice(i, 1);
                 var eltCase = document.getElementById(idCase);
                 eltCase.style.background = "white";
                 eltCase.innerHTML = "&nbsp;";
@@ -426,7 +426,7 @@ function avance() {
             if (symToWrite == 'B') ecriture(0);
             if (symToWrite == '0') ecriture(1);
             if (symToWrite == '1') ecriture(2);
-            todo.splice(i);
+            todo.splice(i, 1);
             break;
         }
     }
@@ -434,18 +434,18 @@ function avance() {
     for (var i = 0; i < todo.length; i++) {
         if (todo[i][0] == 'r') {
             aGauche();
-            todo.splice(i);
+            todo.splice(i, 1);
             break;
         } else if (todo[i][0] == 'l') {
             aDroite();
-            todo.splice(i);
+            todo.splice(i, 1);
             break;
         }
     }
     // changement d’état
     for (var i = 0; i < todo.length; i++) {
         etat = todo[i];
-        todo.splice(i);
+        todo.splice(i, 1);
     }
     if (etat == '12') {
         window.alert("État final");
