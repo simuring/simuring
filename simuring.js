@@ -447,8 +447,10 @@ function avance() {
         etat = todo[i];
         todo.splice(i, 1);
     }
+    // état final
     if (etat == '12') {
         window.alert("État final");
+        return;
     }
 }
 
