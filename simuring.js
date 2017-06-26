@@ -330,32 +330,22 @@ function mousePressed() {
     if (btn_Blanc.estSelectionne()) {
         // remet le bouton de lecture à zéro
         btn_ValeurLue.changeTexte(" ");
-
-        // détecte le bouton sur la zone de lecture/écriture
-        for (i = 0; i < nbCylindres; i++) {
-            // je teste l'abscisse et non l'angle pour éviter le modulo 2π
-            if (lesCylindres[i].x == 284) lesCylindres[i].changeEtat(0);
-        }
+        // 0 correspond à Blanc
+        ecriture(0);
     }
 
     if (btn_Zero.estSelectionne()) {
         // remet le bouton de lecture à zéro
         btn_ValeurLue.changeTexte(" ");
-        // détecte le bouton sur la zone de lecture/écriture
-        for (i = 0; i < nbCylindres; i++) {
-            // je teste l'abscisse et non l'angle pour éviter le modulo 2π
-            if (lesCylindres[i].x == 284) lesCylindres[i].changeEtat(1);
-        }
+        // 1 correspond au symbole 0
+        ecriture(1);
     }
 
     if (btn_Un.estSelectionne()) {
         // remet le bouton de lecture à zéro
         btn_ValeurLue.changeTexte(" ");
-        // détecte le bouton sur la zone de lecture/écriture
-        for (i = 0; i < nbCylindres; i++) {
-            // je teste l'abscisse et non l'angle pour éviter le modulo 2π
-            if (lesCylindres[i].x == 284) lesCylindres[i].changeEtat(2);
-        }
+        // 2 correspond au symbole 1
+        ecriture(2);
     }
 
     // lecture
@@ -405,6 +395,14 @@ function lecture() {
     return symbole;
 }
 
+function ecriture(codeSymbole) {
+    // détecte le bouton sur la zone de lecture/écriture
+    for (i = 0; i < nbCylindres; i++) {
+        // je teste l'abscisse et non l'angle pour éviter le modulo 2π
+        if (lesCylindres[i].x == 284) lesCylindres[i].changeEtat(codeSymbole);
+    }
+}
+
 function avance() {
     if (etat == '12') {
         window.alert("État final");
@@ -424,6 +422,10 @@ function avance() {
     // écriture
     for (var i = 0; i < todo.length; i++) {
         if (todo[i][0] == 'w') {
+            var symToWrite = todo[i].slice(1);
+            if (symToWrite == 'B') ecriture(0);
+            if (symToWrite == '0') ecriture(1);
+            if (symToWrite == '1') ecriture(2);
             todo.splice(i);
             break;
         }
